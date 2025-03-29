@@ -1,26 +1,36 @@
 import { useState } from 'react'
 import './App.css'
+import Timer from './components/Timer'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [isTimerActive, setIsTimerActive] = useState(false)
+  function toggleTimer() {
+    setIsTimerActive(!isTimerActive)
+  }
+  function handleTimerDone() {
+    setIsTimerActive(false)
+  }
   return (
     <>
-      <div className="card">
-        <div className='display'>{count}</div>
-        
-        <div className='btn-line'>
-          <button onClick={() => setCount((count) => count - 1)}>
-            Decrementar
-          </button>
-
-          <button onClick={() => setCount((count) => count + 1)}>
-            Incrementar
-          </button>
-        </div>
+      <button onClick={toggleTimer}>
+        { 
+          isTimerActive 
+            ? "Cancel Timer" 
+            : "Start Timer"
+        }
+      </button>
+      <div>
+        {
+          isTimerActive 
+            ? <Timer onTimerDone={handleTimerDone}></Timer>
+            : <div></div>
+        }
       </div>
+      
     </>
   )
+
+
 }
 
 export default App
