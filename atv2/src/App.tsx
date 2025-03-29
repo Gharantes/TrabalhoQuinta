@@ -2,25 +2,34 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [newTask, setNewTask] = useState('')
 
+  const [listOfTasks, setListOfTasks] = useState<string[]>([]) 
   return (
     <>
-      <div className="card">
-        <div className='display'>{count}</div>
-        
-        <div className='btn-line'>
-          <button onClick={() => setCount((count) => count - 1)}>
-            Decrementar
-          </button>
+      <div>
+        <input type='text' value={newTask} onChange={(e) => setNewTask(e.target.value)} /> 
+        <button onClick={addNewTask}>Adicionar</button>
+      </div>
 
-          <button onClick={() => setCount((count) => count + 1)}>
-            Incrementar
-          </button>
-        </div>
+      <div>
+        { listOfTasks.map((task, index) => (
+          <p key={index}>{task}</p>
+        )) }
       </div>
     </>
   )
+
+  function addNewTask(): undefined {
+    if (newTask == '') {
+      return;
+    }
+    setListOfTasks((list) => {
+      const arr = [...list, newTask];
+      setNewTask('');
+      return arr;
+    });
+  }
 }
 
 export default App
