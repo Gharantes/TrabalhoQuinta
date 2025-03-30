@@ -1,23 +1,29 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([
+    'Animal Crossing',
+    'Prey',
+    'Doom Eternal',
+    'Miami Hotline'
+  ]);
+  const [input, setInput] = useState('');
+
+  const filteredData = useMemo(() => {
+    return data.filter(v => v.toLowerCase().includes(input.toLowerCase()))
+  }, [data, input]);
 
   return (
     <>
-      <div className="card">
-        <div className='display'>{count}</div>
-        
-        <div className='btn-line'>
-          <button onClick={() => setCount((count) => count - 1)}>
-            Decrementar
-          </button>
+      <input type="text" value={input} onChange={(e) => setInput(e.target.value)}/>
 
-          <button onClick={() => setCount((count) => count + 1)}>
-            Incrementar
-          </button>
-        </div>
+      <div>
+        { 
+          filteredData.map((v, i) => (
+            <div key={i}>{v}</div>
+          ))
+        }
       </div>
     </>
   )
