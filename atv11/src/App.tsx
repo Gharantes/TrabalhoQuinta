@@ -1,10 +1,10 @@
 import './App.css'
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
-import PageHome from './components/PageHome'
+import PageHome from './pages/PageHome'
 import { useState } from 'react'
 import { RoutesEnum } from './enums/routesEnum'
-import Page2 from './components/Page2'
+import Page2 from './pages/Page2'
 
 function App() {
   const [activeRoute, setActiveRoute] = useState<RoutesEnum>(RoutesEnum.PAGINA_HOME);
