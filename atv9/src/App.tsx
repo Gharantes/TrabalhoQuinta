@@ -1,26 +1,20 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Box from './component/Box';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <div className="card">
-        <div className='display'>{count}</div>
-        
-        <div className='btn-line'>
-          <button onClick={() => setCount((count) => count - 1)}>
-            Decrementar
-          </button>
-
-          <button onClick={() => setCount((count) => count + 1)}>
-            Incrementar
-          </button>
-        </div>
-      </div>
+      <button onClick={toggleIsOpen}>{ isOpen ? 'Fecha' : 'Abre' }</button>
+      { isOpen && <Box /> }
     </>
   )
+
+  function toggleIsOpen() {
+    setIsOpen((x) => !x);
+  }
 }
 
 export default App
