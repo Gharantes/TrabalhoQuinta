@@ -27,23 +27,13 @@ function App() {
   }
 
   const result = useMemo(() => {
-    let a = 0;
     switch (equationType) {
-      case EquationType.SUM: { a = (input1 ?? 0) + (input2 ?? 0); break; }
-      case EquationType.MINUS: { a = (input1 ?? 0) - (input2 ?? 0); break; }
-      case EquationType.DIVISION: { 
-        // if (input2 == 0) {
-        //   a = 0;
-        // } else {
-          a = (input1 ?? 0) / (input2 ?? 0); 
-        // }
-        break; 
-      }
-      case EquationType.TIMES: { a = (input1 ?? 0) * (input2 ?? 0); break; }
-      default: { a = input1 ?? 0; break; }
+      case EquationType.SUM: { return (input1 ?? 0) + (input2 ?? 0); }
+      case EquationType.MINUS: { return (input1 ?? 0) - (input2 ?? 0); }
+      case EquationType.DIVISION: { return (input1 ?? 0) / (input2 ?? 0); }
+      case EquationType.TIMES: { return (input1 ?? 0) * (input2 ?? 0); }
+      default: { return input1 ?? 0; }
     }
-
-    return a;
   }, [input1, input2, equationType])
 
   return (
