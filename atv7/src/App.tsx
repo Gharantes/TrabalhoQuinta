@@ -1,24 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useRef } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const nameInputRef = useRef<HTMLInputElement>(null); // Create a ref for the name input
+  useEffect(() => {
+    if (nameInputRef.current) {
+      nameInputRef.current.focus();
+    }
+  }, [])
 
   return (
     <>
-      <div className="card">
-        <div className='display'>{count}</div>
-        
-        <div className='btn-line'>
-          <button onClick={() => setCount((count) => count - 1)}>
-            Decrementar
-          </button>
-
-          <button onClick={() => setCount((count) => count + 1)}>
-            Incrementar
-          </button>
-        </div>
+      <div>
+        <label htmlFor="name">Nome</label>
+        <input ref={nameInputRef} name='name' type="text" />
       </div>
+      
+      <div>
+        <label htmlFor="email">E-mail</label>
+        <input name='email' type="text" />
+      </div>
+
+      <button>Enviar</button>
     </>
   )
 }
